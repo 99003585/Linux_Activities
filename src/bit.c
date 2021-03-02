@@ -1,23 +1,20 @@
 #include "bit.h"
-int set(int n, int k) 
+
+int set(int num,int x) 
 { 
-    return (n | (1 << (k - 1))); 
+    return (num | (1 << (x - 1))); 
 } 
-  
-// Function to clear the kth bit of n 
-int clear(int n, int k) 
+
+
+// Function for clearing the ith bit of num 
+
+int clear(int num, int i) 
 { 
-    return (n & (~(1 << (k - 1)))); 
+    return (num & (~(1 << (i - 1)))); 
 } 
   
 // Function to toggle the kth bit of n 
-int flip(int n, int k) 
+int flip(int num, int i) 
 { 
-    return (n ^ (1 << (k - 1))); 
+    return (num ^ (1 << (i - 1))); 
 } 
-
-/*
-int main(){
-    return 0;
-}
-*/

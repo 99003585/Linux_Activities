@@ -1,43 +1,41 @@
 #include "number.h"
-int factorial(int n)
+
+int factorial(int num)
 {
-  if (n == 0) // Base case
+    if(num == 0) // Base case
+      return 1;
+    else
+      return (num*factorial(num-1));
+}
+
+
+int isPrime(int num)
+{
+    int x; 
+    for ( x = 2 ; x <= num - 1 ; x++ )
+    { 
+      if ( num%x == 0 )
+        return 0;
+    }
     return 1;
-  else
-    return (n*factorial(n-1));
 }
+ 
 
-int isPrime(int a)
+int ispalindrome(int num)
 {
-   int c;
- 
-   for ( c = 2 ; c <= a - 1 ; c++ )
-   { 
-      if ( a%c == 0 )
-     return 0;
-   }
-   return 1;
-}
- 
-
-int ispalindrome(int n){
-    int r,sum=0,temp;
-    temp=n;
-    while(n>0)    
+    int rem,sum=0,tempo;
+    tempo=num;
+    while(num>0)    
     {    
-        r=n%10;    
-        sum=(sum*10)+r;    
-        n=n/10;    
+        rem=num%10;    
+        sum=(sum*10)+rem;    
+        num=num/10;    
     }    
-    if(temp==sum)    
+    if(tempo==sum) 
+    {   
        return 1; 
+    }
     else     
        return 0;  
 
 }
-
-/*
-int main(){
-    return 0;
-}
-*/

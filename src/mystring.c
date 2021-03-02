@@ -1,19 +1,21 @@
 #include "mystring.h"
-size_t mystrlen(const char *str){
+
+int mystrlen(const char *str)
+{
     return strlen(str);
 }
-char* mystrcpy(char* dest, const char* src){
-    return strcpy(dest,src);
-}
-char* mystrcat(char *destination, const char *source){
-    return strcat(destination,source);
-}
-int mystrcmp(const char *leftStr, const char *rightStr ){
-    return strcmp(leftStr,rightStr);
+
+char* mystrcpy(char* String1, const char* String2)
+{
+    return strcpy(String1,String2);
 }
 
-/*
-int main(){
-    return 0;
+char* mystrcat(char *String1, const char *String2)
+{
+    return strcat(String1,String2);
 }
-*/
+
+int mystrcmp(const char *String1, const char *String2)
+{
+    return strcmp(String1,String2);
+}
