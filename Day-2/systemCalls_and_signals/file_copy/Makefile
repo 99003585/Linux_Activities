@@ -1,9 +1,10 @@
-SRC = *.c\
+MAIN = *.c\
 
-INC = *.h\
+HEAD = *.h\
 
-all: $(SRC)
-	gcc $(SRC) $(INC) -o a.out
+
+all: $(MAIN)
+	gcc $(MAIN) $(HEAD) -o a.out
 
 run:
 	./a.out
