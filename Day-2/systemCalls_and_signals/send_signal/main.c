@@ -1,6 +1,7 @@
-#include "sig.h"
+#include "signa.h"
+
 
 int main()
-{
-  childprocess();
-}
+  {
+    processChild();
+  }

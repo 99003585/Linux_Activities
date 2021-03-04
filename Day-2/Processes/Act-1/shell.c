@@ -1,19 +1,32 @@
 #include "shell.h"
 
-#define BUFFER_LEN 1024
+#define lengt 1024
 
 void MiniShell() {
-  char line[BUFFER_LEN]; // get command line
-  char *argv[100];       // user command
-  char *path = "/bin/";  // set path at bin
-  char progpath[20];     // full file path
-  int argc;              // arg count
+
+  //** get command line
+  char line[lengt]; 
+
+  // ** user command
+  char *argv[100];      
+
+  // ** set path at bin
+  char *path = "/bin/";
+
+   // ** full file path  
+  char progpath[20];    
+
+   // ** arg count
+  int argc;             
+
 
   while (1) {
 
-    printf("My shell>> "); // print shell prompt
+    // ** print shell prompt
+    printf("My shell>> "); 
 
-    if (!fgets(line, BUFFER_LEN, stdin))
+
+    if (!fgets(line, lengt, stdin))
       break;
 
     size_t length = strlen(line);
@@ -21,11 +34,16 @@ void MiniShell() {
     if (line[length - 1] == '\n')
       line[length - 1] = '\0';
 
-    if (strcmp(line, "exit") == 0) { // check if command is exit
+    if (strcmp(line, "exit") == 0) { 
+      
+      
+      // ** check if command is exit
       break;
     }
 
-    char *token; // split command into separate strings
+    char *token; 
+    
+    // ** split command into separate strings
     token = strtok(line, " ");
     int i = 0;
     while (token != NULL) {
@@ -33,27 +51,46 @@ void MiniShell() {
       token = strtok(NULL, " ");
       i++;
     }
-    argv[i] = NULL; // set last value to NULL for execvp
 
-    argc = i; // get arg count
+    // ** set last value to NULL for execvp
+    argv[i] = NULL; 
+
+    argc = i; 
+    
+    // ** get arg count
     for (i = 0; i < argc; i++) {
-      printf("%s\n", argv[i]); // print command/args
-    }
-    strcpy(progpath, path);    // copy /bin/ to file path
-    strcat(progpath, argv[0]); // add program to path
 
-    for (i = 0; i < strlen(progpath); i++) { // delete newline
+      // ** print command/args
+      printf("%s\n", argv[i]); 
+    }
+
+    // ** copy /bin/ to file path
+    strcpy(progpath, path);    
+    
+    // ** add program to path
+    strcat(progpath, argv[0]); 
+
+    for (i = 0; i < strlen(progpath); i++) {
+      
+       // ** delete newline
       if (progpath[i] == '\n') {
         progpath[i] = '\0';
       }
     }
-    int pid = fork(); // fork child
+    int process_id = fork(); 
+    //** fork child
 
-    if (pid == 0) { // Child
+    if (process_id == 0) { 
+      
+      // ** Child
       execvp(progpath, argv);
       fprintf(stderr, "Child process could not do execvp\n");
 
-    } else { // Parent
+    }
+    
+     else { 
+       
+       //** Parent
       wait(NULL);
       printf("Child exited\n");
     }

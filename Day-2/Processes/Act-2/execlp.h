@@ -3,10 +3,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> /* for fork */
-#include <sys/types.h> /* for pid_t */
-#include <sys/wait.h> /* for wait */
 
-void compile();
+
+//fork
+#include <unistd.h> 
+
+
+//process
+#include <sys/types.h> 
+
+//wait
+#include <sys/wait.h>
+
+void toCompile();
 
 #endif
