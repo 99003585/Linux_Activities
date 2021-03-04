@@ -2,9 +2,11 @@
 
 int main()
 {
-  /* Find Maximum number */
-  printf("Maximum number : %d\n", findmax());
-  /* Find Minimum NUmber */
-  printf("Minmum number : %d\n", findmin());
+
+  printf("%d\n", findmax());
+  
+  
+
+  printf("%d\n", findmin());
   return 0;
 }
