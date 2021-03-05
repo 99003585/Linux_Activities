@@ -1,10 +1,12 @@
-#include "count.h"
+#include "fcount.h"
 
 int main()
 {
-  printf("Check for file contents\n");
-  checkfile();
-  printf("Lines Count : %d\n", getLines());
-  printf("Words Count : %d\n", getWords());
-  printf("Characters Count : %d\n", getCharacters());
+  //printf("Traverse file\n");
+
+  filecount();
+  
+  printf("Lines Count : %d\n", lineCount());
+  printf("Words Count : %d\n", wordCount());
+  printf("Characters Count : %d\n", characterCount());
 }
