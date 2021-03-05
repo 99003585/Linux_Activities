@@ -2,6 +2,7 @@
 
 int main()
 {
-  compile();
+
+  toCompile();
   return 0;
 }

@@ -1,17 +1,32 @@
 #include "execlp.h"
 
-void compile()
+
+
+void toCompile()
 {
-    pid_t pid=fork();
-    int k;
-    if (pid==0)
-    { /* child process */
-    	k=execlp("gcc","gcc","hello.c","-o", "hello.out",NULL);
-        exit(127); /* only if execlp fails */
+    
+    process_id_t process_id=fork();
+    
+    int x;
+    
+    if (process_id==0)
+    
+    { 
+        // child process
+    	
+        x=execlp("gcc","gcc","sample.c","-o", "sample.out",NULL);
+        
+
+        // only if execlp fails
+        exit(127); 
     }
     else
-    { /* pid!=0; parent process */
-    	waitpid(pid,0,0); /* wait for child to exit */
+    { 
+        // process_id!=0; parent process
+    	waitprocess_id(process_id,0,0);
+        
+
+         // wait for child to exit 
     	printf("Parent Process\n");
     }
 }
