@@ -2,25 +2,37 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-// Defining  message queue strucT
-struct message_buffer 
+// Defining  messg queue strucT
+struct messg_bufffer 
 {
-   long message_types;
-   char msgggg[100];
-} message;
+   long messg_types;
+   char messg[100];
+} messg;
 
 int mains() 
 {
-   key_t my_key;
+   key_t keys;
    int msg_id;
-   my_key = ftok("progfile", 65);  // to create unique key
-   msg_id = msgget(my_key, 0666 | IPC_CREAT);  //  creating message queue and return id
-   msgrcv(msg_id, &message, sizeof(message), 1, 0);  // used to receive message
-   printf("Received Message is : %s \n", message.msgggg); // display the message
-    printf("Write Message : ");
-   fgets(message.msgggg, 100, stdin);
+
+
+   keys = ftok("progfile", 65);  // unique key
+
+
+   msg_id = msgget(keys, 0666 | IPC_CREAT);  //  creating message queue
+
+   msgrcv(msg_id, &messg, sizeof(messg), 1, 0);  //receive message
+
+   printf(" %s \n", messg.messg); // display
+
+
+
+   fgets(messg.messg, 100, stdin);
    
-   msgsnd(msg_id, &message, sizeof(message), 0); 
-   printf("Sent message is : %s \n", message.msgggg);
+
+
+   msgsnd(msg_id, &messg, sizeof(messg), 0); 
+
+   printf("Sent messg is : %s \n", messg.messg);
+
    return 0;
 }

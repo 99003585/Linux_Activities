@@ -1,5 +1,5 @@
-Build : circ_buffer.c
-	gcc circ_buffer.c -lpthread
+Build : circular_bufffer.c
+	gcc circular_bufffer.c -lpthread
 
 run : Build
 	./a.out

@@ -1,74 +1,89 @@
-#include<stdio.h>
-#include <stdio.h>
 #include <semaphore.h>
 #include <stdlib.h>
 #include <pthread.h>
+
+#include<stdio.h>
+#include <stdio.h>
+
 # define max 8
+
 sem_t empty;
 sem_t full;
-int circ_queue[max];
-int front = -1;
-int rear = -1;
-void insertion(int item);
-void deletion();
+
+int circular_queue[max];
+
+int fro = -1;
+int rearr = -1;
+
+void insert(int item);
+void delete();
+
 void* pd(void* pp)
 { 
    int item;
    sem_wait(&empty);
-   scanf("%d",&item); //user input
-   insertion(item);
+   scanf("%d",&item);
+   
+
+   insert(item);
    printf("\n");
    sem_post(&full);
 }
 void* cd(void* pp)
 {
  sem_wait(&full);
-  deletion();
+  delete();
    sem_post(&empty);
 }
 
-void insertion(int item)
+void insert(int item)
 {
-if((front == 0 && rear == max-1) || (front == rear+1))
+
+if((fro == 0 && rearr == max-1) || (fro == rearr+1))
 {
 printf("Queuee  Overflow n");
 return;
 }
-if(front == -1)
+
+if(fro == -1)
 {
-front = 0;
-rear = 0;
-}
-else
-{
-if(rear == max-1)
-rear = 0;
-else
-rear = rear+1;
-}
-circ_queue[rear] = item ;
-printf("Element Produced : %d\n",item);
+fro = 0;
+rearr = 0;
 }
 
-void deletion()
+else
 {
-if(front == -1)
+if(rearr == max-1)
+rearr = 0;
+else
+rearr = rearr+1;
+}
+
+circular_queue[rearr] = item ;
+printf("%d\n",item);
+}
+
+
+
+void delete()
 {
-printf("Queue  Underflown");
+if(fro == -1)
+{
+printf("underflow");
 return ;
 }
-printf("Element  Consumed : %d\n",circ_queue[front]);
-if(front == rear)
+printf(" %d\n",circular_queue[fro]);
+if(fro == rearr)
 {
-front = -1;
-rear=-1;
+fro = -1;
+rearr=-1;
 }
 else
 {
-if(front == max-1)
-front = 0;
+if(fro == max-1)
+fro = 0;
 else
-front = front+1;
+fro = fro+1;
 }
 }
 
@@ -79,7 +94,7 @@ int main()
    sem_init(&empty,0,max);
     sem_init(&full,0,0);
     pthread_t pro[8],con[8];
-   printf("Enter  the  items  to  be  produced and consumed of buffer 8\n ");
+   printf("Enter  the  items \n ");
    for(int i = 0; i < 8; i++) {
     pthread_create(&pro[i], NULL, (void *)pd, NULL);
     }
@@ -94,5 +109,6 @@ int main()
     }
        sem_destroy(&empty);
     sem_destroy(&full);
+    
 return 0;
 }

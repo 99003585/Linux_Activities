@@ -1,31 +1,41 @@
 #include <stdio.h> 
 #include <stdio.h>
+
 #include <fcntl.h>
+
 #include <stdlib.h>
 #include <string.h>
+
+
 int main()
 {
 	FILE *file2;
-	int fifoserver,fifoclient;
+	int fserver,fclient;
+
+	
 	char str[256];
 	char *buff;
-	char *choices;
-	printf("Welcome  to a  simple chat application\n\n");
+	char *ch;
+
+
 	if(fork() == 0){   
 		while(1){
-			 choice = malloc(10*sizeof(char));
-			 scanf("%s",choices);
-			 fifo_server=open("fifoserver",O_RDWR);
-			 write(fifoserver,choices,sizeof(choices));
+			 ch = malloc(10*sizeof(char));
+			 scanf("%s",ch);
+
+			 fserver=open("fserver",O_RDWR);
+			 write(fserver,ch,sizeof(ch));
 		}    
 	}
+
 	else{
+		
 		while(1){
-			fifoclient = open("fifoclient",O_RDWR);
-			read(fifoclient,choices,sizeof(choices));
-			printf("%s\n",choices);
+			fclient = open("fclient",O_RDWR);
+			read(fclient,ch,sizeof(ch));
+			printf("%s\n",ch);
 		}
 	}
-	close(fifoserver); 
-	close(fifoclient);  
+	close(fserver); 
+	close(fclient);  
 }
